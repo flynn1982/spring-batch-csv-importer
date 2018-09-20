@@ -1,4 +1,4 @@
-package com.techprimers.springbatchexample1;
+package importer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

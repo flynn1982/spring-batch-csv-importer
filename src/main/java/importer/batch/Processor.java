@@ -1,6 +1,6 @@
-package com.techprimers.springbatchexample1.batch;
+package importer.batch;
 
-import com.techprimers.springbatchexample1.model.User;
+import importer.model.User;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 

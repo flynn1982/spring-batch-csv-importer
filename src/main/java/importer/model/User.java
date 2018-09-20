@@ -1,4 +1,4 @@
-package com.techprimers.springbatchexample1.model;
+package importer.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

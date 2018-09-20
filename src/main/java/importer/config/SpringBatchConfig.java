@@ -1,6 +1,6 @@
-package com.techprimers.springbatchexample1.config;
+package importer.config;
 
-import com.techprimers.springbatchexample1.model.User;
+import importer.model.User;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;

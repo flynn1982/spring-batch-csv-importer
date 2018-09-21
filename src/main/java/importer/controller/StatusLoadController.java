@@ -14,23 +14,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/load")
-public class LoadController {
+@RequestMapping("/load-statuses")
+public class StatusLoadController {
 
-    @Autowired
+	@Autowired
     JobLauncher jobLauncher;
 
-    @Autowired
-    Job job;
+	@Autowired
+    Job statusJob;
 
-    @GetMapping
-    public BatchStatus load() throws JobParametersInvalidException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException {
+	@GetMapping
+	public BatchStatus load() throws JobParametersInvalidException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException {
 
-
-        Map<String, JobParameter> maps = new HashMap<>();
-        maps.put("time", new JobParameter(System.currentTimeMillis()));
-        JobParameters parameters = new JobParameters(maps);
-        JobExecution jobExecution = jobLauncher.run(job, parameters);
+		Map<String, JobParameter> maps = new HashMap<>();
+		maps.put("time", new JobParameter(System.currentTimeMillis()));
+		JobParameters parameters = new JobParameters(maps);
+        JobExecution jobExecution = jobLauncher.run(statusJob, parameters);
 
         System.out.println("JobExecution: " + jobExecution.getStatus());
 
@@ -40,5 +39,5 @@ public class LoadController {
         }
 
         return jobExecution.getStatus();
-    }
+	}
 }

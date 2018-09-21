@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class DBWriter implements ItemWriter<User> {
+public class UserDBWriter implements ItemWriter<User> {
 
     @Autowired
     private UserRepository userRepository;

@@ -22,43 +22,43 @@ import org.springframework.core.io.Resource;
 
 @Configuration
 @EnableBatchProcessing
-public class SpringBatchConfig {
+public class UserBatchConfig {
 
     @Bean
-    public Job job(JobBuilderFactory jobBuilderFactory,
-                   StepBuilderFactory stepBuilderFactory,
-                   ItemReader<User> itemReader,
-                   ItemProcessor<User, User> itemProcessor,
-                   ItemWriter<User> itemWriter
+    public Job userJob(JobBuilderFactory jobBuilderFactory,
+                       StepBuilderFactory stepBuilderFactory,
+                       ItemReader<User> userItemReader,
+                       ItemProcessor<User, User> itemProcessor,
+                       ItemWriter<User> itemWriter
     ) {
 
-        Step step = stepBuilderFactory.get("ETL-file-load")
+        Step userStep = stepBuilderFactory.get("ETL-user-file-load")
                 .<User, User>chunk(100)
-                .reader(itemReader)
+                .reader(userItemReader)
                 .processor(itemProcessor)
                 .writer(itemWriter)
                 .build();
 
 
-        return jobBuilderFactory.get("ETL-Load")
+        return jobBuilderFactory.get("ETL-user-load")
                 .incrementer(new RunIdIncrementer())
-                .start(step)
+                .start(userStep)
                 .build();
     }
 
     @Bean
-    public FlatFileItemReader<User> itemReader(@Value("${input}") Resource resource) {
+    public FlatFileItemReader<User> userItemReader(@Value("${user-input}") Resource resource) {
 
         FlatFileItemReader<User> flatFileItemReader = new FlatFileItemReader<>();
         flatFileItemReader.setResource(resource);
         flatFileItemReader.setName("CSV-Reader");
         flatFileItemReader.setLinesToSkip(1);
-        flatFileItemReader.setLineMapper(lineMapper());
+        flatFileItemReader.setLineMapper(userLineMapper());
         return flatFileItemReader;
     }
 
     @Bean
-    public LineMapper<User> lineMapper() {
+    public LineMapper<User> userLineMapper() {
 
         DefaultLineMapper<User> defaultLineMapper = new DefaultLineMapper<>();
         DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();

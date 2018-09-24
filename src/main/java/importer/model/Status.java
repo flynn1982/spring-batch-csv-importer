@@ -17,8 +17,12 @@ public class Status {
 	private String comments;
 	private String status;
 	private String statusUpdate;
+	private String statusSql;
+	private String statusTranslationOptionSql;
+	private String statusReasonSql;
 
-	public Status(Integer id, String category, String partNumber, String name, String comments, String status, String statusUpdate) {
+    public Status(Integer id, String category, String partNumber, String name, String comments,
+                  String status, String statusUpdate, String statusSql, String statusTranslationOptionSql, String statusReasonSql) {
 //		this.id = id;
 		this.category = category;
 		this.partNumber = partNumber;
@@ -26,6 +30,9 @@ public class Status {
 		this.comments = comments;
 		this.status = status;
 		this.statusUpdate = statusUpdate;
+		this.statusSql = statusSql;
+		this.statusTranslationOptionSql = statusTranslationOptionSql;
+		this.statusReasonSql = statusReasonSql;
 	}
 
 	public Status() {
@@ -85,5 +92,29 @@ public class Status {
 
     public void setStatusUpdate(String statusUpdate) {
         this.statusUpdate = statusUpdate;
+    }
+
+    public String getStatusSql() {
+        return statusSql;
+    }
+
+    public void setStatusSql(String statusSql) {
+        this.statusSql = statusSql;
+    }
+
+    public String getStatusTranslationOptionSql() {
+        return statusTranslationOptionSql;
+    }
+
+    public void setStatusTranslationOptionSql(String statusTranslationOptionSql) {
+        this.statusTranslationOptionSql = statusTranslationOptionSql;
+    }
+
+    public String getStatusReasonSql() {
+        return statusReasonSql;
+    }
+
+    public void setStatusReasonSql(String statusReasonSql) {
+        this.statusReasonSql = statusReasonSql;
     }
 }
